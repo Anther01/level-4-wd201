@@ -50,7 +50,7 @@ const todoList = () => {
       });
     };
   
-    const toListDisplay = (list) => {
+    const toDisplayableList = (list) => {
       const dateNew = (d) => {
         return d.toISOString().split("T")[0];
       };
@@ -82,7 +82,7 @@ const todoList = () => {
       overdue,
       todayDue,
       laterDue,
-      toListDisplay,
+      toDisplayableList,
     };
   };
   
