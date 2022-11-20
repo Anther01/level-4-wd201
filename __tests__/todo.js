@@ -2,31 +2,31 @@ const todoList = require("../todo");
 const {
   all,
   add,
-  markAsComplete,
+  completeMarked,
   overdue,
-  dueToday,
-  dueLater,
+  todayDue,
+  laterDue,
   toDisplayableList,
 } = todoList();
-const dateToday = new Date();
-const formattedDate = (d) => {
+const todayDate = new Date();
+const dateNew = (d) => {
   return d.toISOString().split("T")[0];
 };
-const today = formattedDate(dateToday);
+const today = dateNew(todayDate);
 
 describe("Todo Application Test Suite", () => {
   beforeAll(() => {
-    const formattedDate = (d) => {
+    const dateNew = (d) => {
       return d.toISOString().split("T")[0];
     };
 
-    var dateToday = new Date();
-    const today = formattedDate(dateToday);
-    const yesterday = formattedDate(
-      new Date(new Date().setDate(dateToday.getDate() - 1))
+    var todayDate = new Date();
+    const today = dateNew(todayDate);
+    const yesterday = dateNew(
+      new Date(new Date().setDate(todayDate.getDate() - 1))
     );
-    const tomorrow = formattedDate(
-      new Date(new Date().setDate(dateToday.getDate() + 1))
+    const tomorrow = dateNew(
+      new Date(new Date().setDate(todayDate.getDate() + 1))
     );
 
     add({
@@ -45,39 +45,39 @@ describe("Todo Application Test Suite", () => {
       completed: true,
     });
     add({
-      title: "Service Vehicle",
+      title: "Service your vehicle",
       dueDate: today,
       completed: false,
     });
     add({
-      title: "File taxes",
+      title: "File your taxes",
       dueDate: new Date("2022-12-09"),
       completed: false,
     });
     add({
-      title: "Pay electric bill",
+      title: "Pay your electricity bill",
       dueDate: new Date("2022-11-21"),
       completed: false,
     });
   });
 
-  test("Should add a new item", () => {
+  test("Add a new item", () => {
     const todosCounts = all.length;
     add({
-      title: "wants to submit book in library",
+      title: "Need to submit a book in the library",
       completed: false,
       dueDate: new Date().toLocaleDateString("en-CA"),
     });
     expect(all.length).toBe(todosCounts + 1);
   });
 
-  test("Should update a completed(mark as read) of given item", () => {
+  test("Mark given item as read (mark as read)", () => {
     expect(all[0].completed).toBe(false);
-    markAsComplete(0);
+    completeMarked(0);
     expect(all[0].completed).toBe(true);
   });
 
-  test("Should retrieve a overdue items", () => {
+  test("Retrieve an overdue item", () => {
     overDueItems = overdue();
     expect(
       overDueItems.every((todo) => {
@@ -86,19 +86,19 @@ describe("Todo Application Test Suite", () => {
     ).toBe(true);
   });
 
-  test("Should retrieve a due today items", () => {
-    dueTodayItems = dueToday();
+  test("Retrieve an item due today", () => {
+    todayDueItems = todayDue();
     expect(
-      dueTodayItems.every((todo) => {
+      todayDueItems.every((todo) => {
         return todo.dueDate === today;
       })
     ).toBe(true);
   });
 
-  test("Should retrieve a due later items", () => {
-    dueLaterItems = dueLater();
+  test("Retrieve an item due later", () => {
+    laterDueItems = laterDue();
     expect(
-      dueLaterItems.every((todo) => {
+      laterDueItems.every((todo) => {
         return todo.dueDate > today;
       })
     ).toBe(true);
