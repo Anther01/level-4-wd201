@@ -13,7 +13,6 @@ const todoList = () => {
       const dateNew = (d) => {
         return d.toISOString().split("T")[0];
       };
-  
       const todayDate = new Date();
       const today = dateNew(todayDate);
     //if the due date is already over, we return true
@@ -22,12 +21,10 @@ const todoList = () => {
         else return false;
       });
     };
-  
     const todayDue = () => {
       const dateNew = (d) => {
         return d.toISOString().split("T")[0];
       };
-  
       const todayDate = new Date();
       const today = dateNew(todayDate);
     //if the due date is today, return true
@@ -37,12 +34,10 @@ const todoList = () => {
       });
       return arr;
     };
-  
     const laterDue = () => {
       const dateNew = (d) => {
         return d.toISOString().split("T")[0];
       };
-  
       const todayDate = new Date();
       const today = dateNew(todayDate);
     //if the due date is still yet to come
@@ -51,15 +46,12 @@ const todoList = () => {
         else return false;
       });
     };
-  
     const toDisplayableList = (list) => {
       const dateNew = (d) => {
         return d.toISOString().split("T")[0];
       };
-  
       const todayDate = new Date();
       const today = dateNew(todayDate);
-  
       let flag = list[0].dueDate == today ? true : false;
       const arrStr = list.map((todo) => {
         if (flag == true) {
@@ -71,21 +63,11 @@ const todoList = () => {
           else return "[ ] " + todo.title + " " + todo.dueDate;
         }
       });
-  
       let str = arrStr.join("\n");
-  
       return str;
     };
-  
     return {
-      all,
-      add,
-      completeMarked,
-      overdue,
-      todayDue,
-      laterDue,
-      toDisplayableList,
+      all, add, completeMarked, overdue, todayDue, laterDue, toDisplayableList,
     };
   };
-  
   module.exports = todoList;
