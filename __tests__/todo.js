@@ -30,33 +30,33 @@ describe("Todo Application Test Suite", () => {
     );
 
     add({
-      title: "Todo Application Test",
-      dueDate: new Date("2022-10-20"),
+      title: "Complete your seminar review",
+      dueDate: new Date("2022-11-22"),
       completed: false,
     });
     add({
-      title: "Submit assignment",
-      dueDate: new Date("2021-12-21"),
+      title: "Do your laundry",
+      dueDate: today,
       completed: false,
     });
     add({
-      title: "Pay rent",
+      title: "Pay your mortgage",
       dueDate: today,
       completed: true,
     });
     add({
-      title: "Service your vehicle",
-      dueDate: today,
+      title: "Clean your shoes",
+      dueDate: new Date("2022-11-20"),
       completed: false,
     });
     add({
-      title: "File your taxes",
+      title: "Pack your luggage for an upcoming trip",
       dueDate: new Date("2022-12-09"),
       completed: false,
     });
     add({
-      title: "Pay your electricity bill",
-      dueDate: new Date("2022-11-21"),
+      title: "Get your laptop screen repaired",
+      dueDate: new Date("2022-11-30"),
       completed: false,
     });
   });
